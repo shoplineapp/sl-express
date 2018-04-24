@@ -1,0 +1,16 @@
+{
+  "name": "shopline-nodejs-framework",
+  "version": "0.0.1",
+  "description": "an internal used nodejs framework for shopline",
+  "keywords": [ ],
+  "main": "index.js",
+  "bugs": {
+    "email": "ted@shoplineapp.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}

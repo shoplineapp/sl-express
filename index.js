@@ -1,1 +1,1 @@
-module.exports = require('./lib/App.js')
+module.exports = require('./lib/models/App.js')

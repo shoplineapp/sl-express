@@ -2,7 +2,7 @@
   "name": "shopline-nodejs-framework",
   "version": "0.0.1",
   "description": "an internal used nodejs framework for shopline",
-  "keywords": [ ],
+  "keywords": [],
   "main": "index.js",
   "bugs": {
     "email": "ted@shoplineapp.com"
@@ -11,6 +11,12 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "chai": "^3.5.0",
-    "mocha": "^2.5.3"
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "log4js": "^2.5.3",
+    "mocha": "^2.5.3",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2",
+    "require-all": "^2.2.0"
   }
 }

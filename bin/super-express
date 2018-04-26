@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-
-let app = require(`${process.cwd()}/app.js`)
-
-app.start().catch(console.log)

@@ -1,5 +1,21 @@
 #!/usr/bin/env node
 
+let args = process.argv.slice(2)
+
+let path = require('path')
 let app = require(`${process.cwd()}/app.js`)
 
-app.start().catch(console.log)
+if (args[0] == "start") {
+
+  let filePath = path.resolve(__dirname, '../lib/server.js')
+  require(filePath)
+
+}
+
+if (args[0] == "console") {
+
+  let filePath = path.resolve(__dirname, '../lib/console.js')
+  require(filePath)
+
+}
+

@@ -1,4 +1,4 @@
-let SuperApp = require('shopline-nodejs-framework')
+let SuperApp = require('sl-express')
 
 class App extends SuperApp {
 
@@ -20,4 +20,3 @@ class App extends SuperApp {
 
 let app = new App
 module.exports = app
-//app.start().catch(console.log)

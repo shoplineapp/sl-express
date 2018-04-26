@@ -5,4 +5,4 @@ class App extends SuperApp {
 }
 
 let app = new App
-app.start().catch(console.log)
+module.exports = app

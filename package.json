@@ -4,6 +4,9 @@
   "description": "an internal used nodejs framework for shopline",
   "keywords": [],
   "main": "index.js",
+  "bin": {
+    "super-express": "./bin/super-express"
+  },
   "bugs": {
     "email": "ted@shoplineapp.com"
   },

@@ -1,9 +1,12 @@
 {
-  "name": "shopline-nodejs-framework",
+  "name": "sl-express",
   "version": "0.0.1",
   "description": "an internal used nodejs framework for shopline",
   "keywords": [],
   "main": "index.js",
+  "bin": {
+    "sl-express": "./bin/sl-express"
+  },
   "bugs": {
     "email": "ted@shoplineapp.com"
   },

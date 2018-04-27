@@ -11,7 +11,7 @@ class App extends SuperApp {
 
   async disconnectDependencies() {
 
-    try { await this.diconnectMongo() }catch(e) { throw e }
+    try { await this.disconnectMongo() }catch(e) { throw e }
     try { await super.disconnectDependencies() }catch(e) { throw e }
 
   }

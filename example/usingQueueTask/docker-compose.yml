@@ -1,0 +1,84 @@
+version: "3"
+
+services:
+  publisher:
+    build: .
+    image: "shopline/ben"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ben-logs:/app/logs
+    environment:
+      - MONGO_PORT_27017_TCP_ADDR=mongo
+      - MONGO_PORT_27017_TCP_PORT=27017
+      - CHAT_PORT_3000_TCP_ADDR=chat
+      - CHAT_PORT_3000_TCP_PORT=3000
+      - RABBITMQ_PORT_5672_TCP_ADDR=rabbitmq
+      - RABBITMQ_PORT_5672_TCP_PORT=5672
+      - REDIS_PORT_6379_TCP_ADDR=redis
+      - REDIS_PORT_6379_TCP_PORT=6379
+      - APP_ROLE=PUBLISHER
+    command: bash -c "chmod +x ./wait-for.sh && ./wait-for.sh rabbitmq:5672 -- forever -a -o /tmp/out.log -e /tmp/err.log --watch --watchDirectory ./api server.js"
+
+  ben-low-consumer:
+    build: .
+    image: "shopline/ben"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ben-logs:/app/logs
+    environment:
+      - MONGO_PORT_27017_TCP_ADDR=mongo
+      - MONGO_PORT_27017_TCP_PORT=27017
+      - CHAT_PORT_3000_TCP_ADDR=chat
+      - CHAT_PORT_3000_TCP_PORT=3000
+      - RABBITMQ_PORT_5672_TCP_ADDR=rabbitmq
+      - RABBITMQ_PORT_5672_TCP_PORT=5672
+      - REDIS_PORT_6379_TCP_ADDR=redis
+      - REDIS_PORT_6379_TCP_PORT=6379
+      - APP_ROLE=CONSUMER
+      - CONSUMER_QUEUE_ID=default
+    command: bash -c "chmod +x ./wait-for.sh && ./wait-for.sh rabbitmq:5672 -- forever -a -o /tmp/out.log -e /tmp/err.log --watch --watchDirectory ./api server.js"
+
+  ben-high-consumer:
+    build: .
+    image: "shopline/ben"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ben-logs:/app/logs
+    environment:
+      - MONGO_PORT_27017_TCP_ADDR=mongo
+      - MONGO_PORT_27017_TCP_PORT=27017
+      - CHAT_PORT_3000_TCP_ADDR=chat
+      - CHAT_PORT_3000_TCP_PORT=3000
+      - RABBITMQ_PORT_5672_TCP_ADDR=rabbitmq
+      - RABBITMQ_PORT_5672_TCP_PORT=5672
+      - REDIS_PORT_6379_TCP_ADDR=redis
+      - REDIS_PORT_6379_TCP_PORT=6379
+      - APP_ROLE=CONSUMER
+      - CONSUMER_QUEUE_ID=highPriority
+    command: bash -c "chmod +x ./wait-for.sh && ./wait-for.sh rabbitmq:5672 -- forever -a -o /tmp/out.log -e /tmp/err.log --watch --watchDirectory ./api server.js"
+
+  mongo:
+    image: "mongo"
+    volumes:
+      - "mongodb:/data/db"
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  redis:
+    image: "redis"
+
+volumes:
+  mongodb:
+    driver: local
+  ben-logs:
+    driver: local
+

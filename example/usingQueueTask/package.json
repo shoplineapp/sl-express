@@ -1,0 +1,14 @@
+{
+  "name": "example-basic",
+  "version": "0.0.1",
+  "description": "an internal used nodejs framework for shopline",
+  "keywords": [],
+  "main": "index.js",
+  "bugs": {
+    "email": "ted@shoplineapp.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "sl-express": "git+ssh://git@bitbucket.org/starlinglabs/shopline-node.git"
+  }
+}

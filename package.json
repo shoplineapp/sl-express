@@ -1,16 +1,18 @@
 {
-  "name": "sl-express",
-  "version": "0.0.1",
-  "description": "an internal used nodejs framework for shopline",
-  "keywords": [],
+  "name": "@shopline/sl-express",
+  "version": "1.0.0",
+  "description": "A nodejs framework based on expressjs",
   "main": "index.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
   "bin": {
     "sl-express": "./bin/sl-express"
   },
   "bugs": {
     "email": "ted@shoplineapp.com"
   },
-  "license": "ISC",
   "dependencies": {
     "bluebird": "^3.5.0",
     "chai": "^3.5.0",
@@ -23,5 +25,22 @@
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "require-all": "^2.2.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/shoplineapp/sl-express.git"
+  },
+  "keywords": [
+    "expressjs"
+  ],
+  "author": "Ted Cheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shoplineapp/sl-express/issues"
+  },
+  "homepage": "https://github.com/shoplineapp/sl-express#readme"
 }

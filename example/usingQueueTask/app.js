@@ -22,13 +22,13 @@ class App extends SuperApp {
 
     if (this.config.app.role == "CONSUMER") {
 
-      QueueTask.consume(this.config.app.consumerQueueId)
+      await this.startConsumer()
 
       return
 
     }
 
-    await super.startService()
+    await this.startExpress()
 
   }
 

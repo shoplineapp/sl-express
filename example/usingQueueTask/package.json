@@ -9,6 +9,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "sl-express": "git+ssh://git@bitbucket.org/starlinglabs/shopline-node.git"
+    "@shopline/sl-express": "^1.0.0"
   }
 }

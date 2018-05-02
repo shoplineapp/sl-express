@@ -1,4 +1,4 @@
-let SuperApp = require('../../index.js')
+let SuperApp = require('@shopline/sl-express')
 
 class App extends SuperApp {
 

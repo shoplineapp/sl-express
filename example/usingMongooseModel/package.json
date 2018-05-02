@@ -9,7 +9,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^5.0.16",
-    "sl-express": "git+ssh://git@bitbucket.org/starlinglabs/shopline-node.git"
+    "@shopline/sl-express": "^1.0.0",
+    "mongoose": "^5.0.16"
   }
 }

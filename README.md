@@ -22,7 +22,6 @@ This framework has a Class called App. App acts as a 'motherboard' of the whole 
 4. import ***models*** folder and export to the context
 5. import ***viewModels*** folder and export as context.ViewModels
 6. import ***controllers*** folder and export to the context
-7. load ***config/routes.js*** and do the routing using express router
 
 ###### starting phase
 1. connect to dependent services (like mongo, redis)
@@ -87,7 +86,7 @@ This phase handle the connection to other service like mongo, redis and rabbitmq
   async connectAwesomeService() {
     /* connect... connect... connect... */
   }
-  
+
   async disconnectAwesomeService() {
     /* disconnect... disconnect... disconnect... */
   }
@@ -105,7 +104,7 @@ This phase handle the connection from other service like mongo, redis and rabbit
   async connectAwesomeService() {
     /* connect... connect... connect... */
   }
-  
+
   async disconnectAwesomeService() {
     /* disconnect... disconnect... disconnect... */
   }
@@ -128,12 +127,12 @@ async startService() {
     await this.startExpress()
     return
   }
-  
+
   if (/*this.role == 'WORKER'*/) {
     /* start consuming queue */
     return
   }
-  
+
 }
 ```
 
@@ -147,23 +146,23 @@ async stopService() {
     await this.stopExpress()
     return
   }
-  
+
   if (/*this.role == 'WORKER'*/) {
     /* stop consuming queue */
     return
   }
-  
+
 }
 ```
 
 ### serving an api
 ##### routing and middlewares
-To add a route, you can simply add a string to routes: []. It will split it by spaces. 
+To add a route, you can simply add a string to routes: []. It will split it by spaces.
 
 The pattern should be:
 >HTTP_METHOD URI middleware middleware Controller.action
 
-Sometimes you may not want to insert middleware one by one. Then you can use the preMiddlewares. Please check: 
+Sometimes you may not want to insert middleware one by one. Then you can use the preMiddlewares. Please check:
 https://expressjs.com/en/guide/using-middleware.html
 
 The pattern should be:
@@ -177,9 +176,9 @@ module.exports = {
   ],
 
   routes: [
-    'GET /index PublicController.index
+    'GET /index PublicController.index'
   ]
-  
+
   postMiddlewares: [],
 }
 ```
@@ -189,13 +188,13 @@ This is how a controller should be added to the api/controllers directory
 
 ```javascript
 Class PublicController {
-  
+
   async index(req, res) {
-  
+
     return res.send('hello world')
-  
+
   }
-  
+
 }
 
 module.exports = PublicController
@@ -214,32 +213,32 @@ class AwesomeService {
 
   /* a lazy loading singleton. It ensures the lib would not be required if the service is not used. It may seems a bit dirty for requiring lib in functions. But it makes this service able to move into the core framework some days.
   */
-  
+
   static get theLibYouUse() {
-  
+
     if (!_theLibYouUse) {
        _theLibYouUse = require('theLibYouUse')
     }
-  
+
     return _theLibYouUse
   }
 
   /* A singleton. Most of the case you will just need to init one Service instance. You still better do a signleton pattern so that you can do stubbing easily when doing unit test on Model methods that make use of this service */
 
   static get sharedAwesomeService() {
-  
+
     if (!_sharedAwesomeService) {
-    
+
       _sharedAwesomeService = new AwesomeService
-      
+
     }
-    
+
     return _sharedAwesomeService
-    
+
   }
-  
+
   /* As singleton is used, it will be hard to pass the config when initializing the service. That's why we use init instead of constructor. Besides, we may not want to set the config or directly get the global config inside this class because it's better to keep it with fewer dependencies. The config should be passed to the signleton in the motherbroad */
-  
+
   init(config) {
     this.endpoint = config.endpoint
     this.abc = config.abc
@@ -265,36 +264,36 @@ AWESOME_SERVICE_ENPOINT=http://awesomeservice.com/api
 
 *app.js*
 ```javascript
-  async connectAwesomeService() { 
-  
+  async connectAwesomeService() {
+
     await AwesomeService.sharedAwesomeService.init(this.config.awesomeService).connect()
-    
+
   }
-  
+
   async disconnectAwesomeService() {
-    
+
     await AwesomeService.SharedAwesomeService.disconnect()
-    
+
   }
-  
+
   async connectDependencies() {
-  
+
     await super.connectDependencies()
     await this.connectAwesomeService()
-  
+
   }
-  
+
   async disconnectDependencies() {
-  
+
     await this.disconnectAwesomeService()
     await super.disconnectDependencies()
-    
+
   }
-  
+
 ```
 
 ### config
-In most of the frameworks, they like to do a structure like 
+In most of the frameworks, they like to do a structure like
 ```
 - config/
   - env/
@@ -303,7 +302,7 @@ In most of the frameworks, they like to do a structure like
   - config1
   - config2
 ```
-And these framework will first gather config1 and config2, and do a overriding with the specified environment config. Yet this framework **WON'T** do this. 
+And these framework will first gather config1 and config2, and do a overriding with the specified environment config. Yet this framework **WON'T** do this.
 
 >All environment related config should be controlled by .env file
 
@@ -311,7 +310,7 @@ And these framework will first gather config1 and config2, and do a overriding w
 This framework use log4js wrapped in a service Logger. Things can be configured in ***config/logger.js***.
 There is no magic for configuring the Logger. Please visit: https://www.npmjs.com/package/log4js
 
-Most of the cases, you just need to add categories like 'broadcast', 'queueHandling'. It just bases on what feature you want to take log. 
+Most of the cases, you just need to add categories like 'broadcast', 'queueHandling'. It just bases on what feature you want to take log.
 
 Besides, as we are using cloudwatch, we just append our logs to stdout at this moment.
 
@@ -336,7 +335,7 @@ class AwesomeModel extends MongooseModel {
      //do something
      return next()
   }
-  
+
 }
 
 module.exports = AwesomeModel
@@ -355,17 +354,17 @@ MONGODB_DATABASE
 After adding ENV, you just need to call connection method in you app.js
 ```javascript
   async connectDependencies() {
-  
+
     try { await super.connectDependencies() }catch(e) { throw e }
     try { await this.connectMongo() }catch(e) { throw e }
-    
+
   }
-  
+
   async disconnectDependencies() {
-  
+
     try { await this.disconnectMongo() }catch(e) { throw e }
     try { await super.disconnectDependencies() }catch(e) { throw e }
-    
+
   }
 ```
 ### using redis
@@ -387,17 +386,17 @@ Redis.redis
 Also remember to connect in the connectDependencies phase
 ```javascript
   async connectDependencies() {
-  
+
     try { await super.connectDependencies() }catch(e) { throw e }
     try { await this.connectRedis() }catch(e) { throw e }
-    
+
   }
-  
+
   async disconnectDependencies() {
-  
+
     try { await this.disconnectRedis() }catch(e) { throw e }
     try { await super.disconnectDependencies() }catch(e) { throw e }
-    
+
   }
 ```
 
@@ -422,31 +421,31 @@ MessageQueue.messageQueueLib
 Also remember to connect in the connectDependencies phase
 ```javascript
   async connectDependencies() {
-  
+
     try { await super.connectDependencies() }catch(e) { throw e }
     try { await this.connectMessageQueue() }catch(e) { throw e }
-    
+
   }
-  
+
   async disconnectDependencies() {
-  
+
     try { await this.disconnectMessageQueue() }catch(e) { throw e }
     try { await super.disconnectDependencies() }catch(e) { throw e }
-    
+
   }
 ```
 
 ### using QueueTask
 You need to connect to both Redis and Rabbitmq for this feature. By default, we will store the payload of a task to Redis and only send the task id to the rabbitmq. This design will avoid sending too large payload to the rabbitmq. QueueTask, as a model, will handle all this for you.
 
-Please refer to **using redis** section. 
-Please refer to **using messageQueue** section. 
+Please refer to **using redis** section.
+Please refer to **using messageQueue** section.
 
 Before everything, you need to add a queue task to config/queueTask.js first
 
 ```javascript
 module.exports = [
-  { 
+  {
     type: "TEST", // an identifier for you task
     queue: "test", // the queue to handle the task.
     handler: "Test.dequeue", // the handler of the tasks of this type
@@ -460,30 +459,30 @@ To Add a task to queue and dequeue handling
 class Test {
 
   static async enqueue(test) {
-   
+
     //do something to make a payload
     let payload = {
       firstName: test.firstName,
       sex: test.sex
     }
-    
+
     await QueueTask.queue({
       taskType: "TEST",
       payload: payload
     })
-    
+
   }
 
   static async dequeue(queueTask) {
-  
+
     let payload = queueTask.payload
-    
+
     /* handle the payload */
     console.log(payload.firstName)
-    
+
   }
 
-} 
+}
 
 module.exports = Test
 ```

@@ -11,7 +11,7 @@
     "sl-express": "./bin/sl-express"
   },
   "bugs": {
-    "email": "ted@shoplineapp.com"
+    "url": "https://github.com/shoplineapp/sl-express/issues"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
@@ -19,6 +19,7 @@
     "deep-extend": "^0.5.0",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "inflection": "^1.12.0",
     "log4js": "^2.5.3",
     "mocha": "^2.5.3",
     "repl": "^0.1.3",
@@ -39,8 +40,5 @@
   ],
   "author": "Ted Cheng",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/shoplineapp/sl-express/issues"
-  },
   "homepage": "https://github.com/shoplineapp/sl-express#readme"
 }

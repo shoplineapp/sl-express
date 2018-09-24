@@ -76,6 +76,17 @@ class TestSuite extends TestCombo {
       })
 
     })
+
+    it('should also load nested models with correct prefix', () => {
+      const properties = [
+        'Delegatee_Message_ABCDelegatee',
+        'Delegatee_Message_CDEDelegatee',
+      ]
+
+      properties.forEach( (prop) => {
+        expect(global).toHaveProperty(prop)
+      })
+    })
   }
 
   failureAssert(test, combination) {

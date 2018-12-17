@@ -65,6 +65,18 @@ class TestSuite extends TestCombo {
       })
     })
 
+    it('should make the controllers can reference the correct app', () => {
+      const properties = [
+        'ControllerA',
+        'ControllerB',
+      ]
+
+      properties.forEach( (prop) => {
+        expect(test.app.controllers[prop].app).toEqual(test.app)
+      })
+
+    })
+
   }
 
   failureAssert(test, combination) {

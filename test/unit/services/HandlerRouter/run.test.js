@@ -109,7 +109,7 @@ class TestSuite extends TestCombo {
 
     if (key !== 'correct') {
       it('should throw error', () => {
-        expect(test.res.message).toEqual('key_not_exist')
+        expect(test.res.extras.code).toEqual('key_not_exist')
       })
 
       return
@@ -117,7 +117,7 @@ class TestSuite extends TestCombo {
 
     if (klassMethodFormat !== 'correct') {
       it('should throw error', () => {
-        expect(test.res.message).toEqual('handler_invalid_format')
+        expect(test.res.extras.code).toEqual('handler_invalid_format')
       })
 
       return
@@ -125,7 +125,7 @@ class TestSuite extends TestCombo {
 
     if (klass !== 'correct') {
       it('should throw error', () => {
-        expect(test.res.message).toEqual('class_not_exist')
+        expect(test.res.extras.code).toEqual('class_not_exist')
       })
 
       return
@@ -133,7 +133,7 @@ class TestSuite extends TestCombo {
 
     if (method !== 'correct') {
       it('should throw error', () => {
-        expect(test.res.message).toEqual('method_not_exist')
+        expect(test.res.extras.code).toEqual('method_not_exist')
       })
 
       return

@@ -1,5 +1,5 @@
 require(process.cwd() + '/test/bootstrap.js')
-const QueueTask = require(`${libPath}/models/QueueTask.js`)
+const QueueTask = require(`${libPath}/services/QueueTask.js`)
 
 class TestSuite extends TestCombo {
   get title() { return 'QueueTask.init' }

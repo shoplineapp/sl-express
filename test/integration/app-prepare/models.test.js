@@ -46,6 +46,7 @@ class TestSuite extends TestCombo {
     test.spyProjectDir = jest.spyOn(test.app, 'projectDir')
       .mockReturnValue(`${process.cwd()}/test/exampleApp`)
 
+    test.app.loadFramework()
     return test.app.loadModels()
   }
 

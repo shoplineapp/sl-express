@@ -1,4 +1,8 @@
 class DummyPlugin {
+  didLoadFramework() {
+
+  }
+
   prepare(app) {
 
   }
@@ -11,11 +15,11 @@ class DummyPlugin {
 
   }
 
-  async beforeStartService(app) {
+  async willStartService(app) {
 
   }
 
-  async afterStartService(app) {
+  async didStartService(app) {
 
   }
 }

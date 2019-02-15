@@ -507,8 +507,8 @@ the export of the index.js must provide the following interfaces
 1. prepare(app) { }
 2. async connectDependencies(app) { }
 3. async disconnectDependencies(app) { }
-4. async beforeStartService(app) { }
-5. async afterStartService(app) { }
+4. async willStartService(app) { }
+5. async didStartService(app) { }
 
 These interfaces are actaully about those App phases. check the class App for details
 

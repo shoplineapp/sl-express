@@ -67,7 +67,7 @@ class TestSuite extends TestCombo {
     })
 
     it('should do overriding', async () => {
-      const result = await test.app.plugins.queueTask.beforeStartService()
+      const result = await test.app.plugins.queueTask.willStartService()
       expect(result).toEqual('abc')
     })
 

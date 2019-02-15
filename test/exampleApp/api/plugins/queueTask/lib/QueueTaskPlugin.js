@@ -1,4 +1,8 @@
 class QueueTaskPlugin {
+  didLoadFramework() {
+
+  }
+
   prepare(app) {
 
   }
@@ -11,11 +15,11 @@ class QueueTaskPlugin {
 
   }
 
-  async beforeStartService(app) {
+  async willStartService(app) {
     return 'abc'
   }
 
-  async afterStartService(app) {
+  async didStartService(app) {
 
   }
 }

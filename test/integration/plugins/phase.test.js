@@ -50,8 +50,8 @@ class TestSuite extends TestCombo {
       'prepare',
       'connectDependencies',
       'disconnectDependencies',
-      'beforeStartService',
-      'afterStartService',
+      'willStartService',
+      'didStartService',
     ]
 
     const fakePlugin = function() {

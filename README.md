@@ -487,6 +487,33 @@ class Test {
 module.exports = Test
 ```
 
+### using Plugin
+You can build any plugin you like using Plugin feature. SL-expres will
+1. read the app.config.plugins
+2. read `/plugins` of YOUR application folder and import the plugin ONLY the key exists in the config
+3. if there are some keys in the config still cannot be imported, it try to import them from sl-express
+
+the plugin must fulfill the directory structure
+
+```javascript
+// plugins
+    - samplePlugin1
+      - index.js
+    - samplePlugin2
+      - index.js
+```
+
+the export of the index.js must provide the following interfaces
+1. prepare(app) { }
+2. async connectDependencies(app) { }
+3. async disconnectDependencies(app) { }
+4. async willStartService(app) { }
+5. async didStartService(app) { }
+
+These interfaces are actaully about those App phases. check the class App for details
+
+`app` means the App instance. You can get properties through this app instance. Most of the cases, you will need the app.config
+
 ### starting a docker container
 TBC
 

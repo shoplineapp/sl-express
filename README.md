@@ -308,6 +308,15 @@ And these framework will first gather config1 and config2, and do a overriding w
 
 ### adding more logging
 This framework use log4js wrapped in a service Logger. Things can be configured in ***config/logger.js***.
+
+***Please config your config/app.js***
+
+```javascript
+{
+  plugins: ['logger']
+}
+```
+
 There is no magic for configuring the Logger. Please visit: https://www.npmjs.com/package/log4js
 
 Most of the cases, you just need to add categories like 'broadcast', 'queueHandling'. It just bases on what feature you want to take log.
@@ -351,22 +360,15 @@ MONGODB_HOST
 MONGODB_PORT
 MONGODB_DATABASE
 ```
-After adding ENV, you just need to call connection method in you app.js
+
+***Please config your config/app.js***
+
 ```javascript
-  async connectDependencies() {
-
-    try { await super.connectDependencies() }catch(e) { throw e }
-    try { await this.connectMongo() }catch(e) { throw e }
-
-  }
-
-  async disconnectDependencies() {
-
-    try { await this.disconnectMongo() }catch(e) { throw e }
-    try { await super.disconnectDependencies() }catch(e) { throw e }
-
-  }
+{
+  plugins: ['mongoose']
+}
 ```
+
 ### using redis
 By default we have a config file in framework mapping ENVs to the redis config
 
@@ -377,27 +379,13 @@ REDIS_HOST
 REDIS_PORT
 REDIS_DATABASE
 ```
-There will be a global.Redis variable. With Redis.redis, you can get the redis lib that we actually using.
+
+***Please config your config/app.js***
 
 ```javascript
-Redis.redis
-```
-
-Also remember to connect in the connectDependencies phase
-```javascript
-  async connectDependencies() {
-
-    try { await super.connectDependencies() }catch(e) { throw e }
-    try { await this.connectRedis() }catch(e) { throw e }
-
-  }
-
-  async disconnectDependencies() {
-
-    try { await this.disconnectRedis() }catch(e) { throw e }
-    try { await super.disconnectDependencies() }catch(e) { throw e }
-
-  }
+{
+  plugins: ['redis']
+}
 ```
 
 ### using messageQueue
@@ -412,27 +400,13 @@ RABBITMQ_PORT
 RABBITMQ_PREFETCH_COUNT
 RABBITMQ_QUEUE_PREFIX
 ```
-There will be a global.MessageQueue variable. With MessageQueue.messageQueueLib, you can get the messageQueueLib lib that we actually using.
+
+***Please config your config/app.js***
 
 ```javascript
-MessageQueue.messageQueueLib
-```
-
-Also remember to connect in the connectDependencies phase
-```javascript
-  async connectDependencies() {
-
-    try { await super.connectDependencies() }catch(e) { throw e }
-    try { await this.connectMessageQueue() }catch(e) { throw e }
-
-  }
-
-  async disconnectDependencies() {
-
-    try { await this.disconnectMessageQueue() }catch(e) { throw e }
-    try { await super.disconnectDependencies() }catch(e) { throw e }
-
-  }
+{
+  plugins: ['messageQueue']
+}
 ```
 
 ### using QueueTask
@@ -442,6 +416,15 @@ Please refer to **using redis** section.
 Please refer to **using messageQueue** section.
 
 Before everything, you need to add a queue task to config/queueTask.js first
+
+***Please config your config/app.js***
+
+```javascript
+{
+  plugins: ['queueTask']
+}
+```
+
 
 ```javascript
 module.exports = [

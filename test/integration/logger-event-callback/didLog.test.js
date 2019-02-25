@@ -1,5 +1,5 @@
 require(process.cwd() + '/test/bootstrap.js')
-const Logger = require(`${libPath}/services/Logger.js`)
+const Logger = require(`${libPath}/plugins/logger/lib/Logger.js`)
 
 class TestSuite extends TestCombo {
   get title() { return 'Logger event - didLog' }

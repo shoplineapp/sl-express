@@ -58,9 +58,7 @@ class TestSuite extends TestCombo {
   successAssert(test, combination) {
     it('should load default config', () => {
       const properties = [
-        'Logger',
-        'MessageQueue',
-        'Redis'
+        'AppError',
       ]
 
       properties.forEach( (prop) => {
@@ -69,7 +67,7 @@ class TestSuite extends TestCombo {
     })
 
     it('should do overriding', () => {
-      expect(test.app.services.Logger.sampleMethod()).toEqual('sampleMethod')
+      expect(test.app.services.AppError.sampleMethod()).toEqual('sampleMethod')
     })
 
     it('should add new Field', () => {
@@ -85,9 +83,6 @@ class TestSuite extends TestCombo {
 
     it('should export services to the context(global)', () => {
       const properties = [
-        'Logger',
-        'MessageQueue',
-        'Redis',
         'SampleService'
       ]
 

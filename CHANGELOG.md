@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
 
+## [2.1.1] - 2019-02-25
+### Fixed
+- Error when plugin doesn't provide connectDependencies or disconnectDependencies
+
 ## [2.1.0] - 2019-02-25
 ### Added
 - New plugin feature (read README.md for HOW-TO-USE)

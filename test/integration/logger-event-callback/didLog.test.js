@@ -1,5 +1,5 @@
 require(process.cwd() + '/test/bootstrap.js')
-const Logger = require(`${libPath}/services/Logger.js`)
+const Logger = require(`${libPath}/plugins/logger/lib/Logger.js`)
 
 class TestSuite extends TestCombo {
   get title() { return 'Logger event - didLog' }
@@ -45,13 +45,13 @@ class TestSuite extends TestCombo {
     test.logLevel = 'trace'
     test.logPayload = {}
 
-    test.logger = Logger.sharedLogger
+    test.logger = new Logger
 
     test.callback = jest.fn()
 
     test.logger.on('didLog', test.callback)
 
-    return Logger.log(test.logCategory, test.logLevel, test.logPayload)
+    return test.logger.log(test.logCategory, test.logLevel, test.logPayload)
   }
 
   shouldSuccess(combination) {

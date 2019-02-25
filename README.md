@@ -308,6 +308,15 @@ And these framework will first gather config1 and config2, and do a overriding w
 
 ### adding more logging
 This framework use log4js wrapped in a service Logger. Things can be configured in ***config/logger.js***.
+
+***Please config your config/app.js***
+
+```javascript
+{
+  plugins: ['logger']
+}
+```
+
 There is no magic for configuring the Logger. Please visit: https://www.npmjs.com/package/log4js
 
 Most of the cases, you just need to add categories like 'broadcast', 'queueHandling'. It just bases on what feature you want to take log.
@@ -351,22 +360,15 @@ MONGODB_HOST
 MONGODB_PORT
 MONGODB_DATABASE
 ```
-After adding ENV, you just need to call connection method in you app.js
+
+***Please config your config/app.js***
+
 ```javascript
-  async connectDependencies() {
-
-    try { await super.connectDependencies() }catch(e) { throw e }
-    try { await this.connectMongo() }catch(e) { throw e }
-
-  }
-
-  async disconnectDependencies() {
-
-    try { await this.disconnectMongo() }catch(e) { throw e }
-    try { await super.disconnectDependencies() }catch(e) { throw e }
-
-  }
+{
+  plugins: ['mongoose']
+}
 ```
+
 ### using redis
 By default we have a config file in framework mapping ENVs to the redis config
 
@@ -377,27 +379,13 @@ REDIS_HOST
 REDIS_PORT
 REDIS_DATABASE
 ```
-There will be a global.Redis variable. With Redis.redis, you can get the redis lib that we actually using.
+
+***Please config your config/app.js***
 
 ```javascript
-Redis.redis
-```
-
-Also remember to connect in the connectDependencies phase
-```javascript
-  async connectDependencies() {
-
-    try { await super.connectDependencies() }catch(e) { throw e }
-    try { await this.connectRedis() }catch(e) { throw e }
-
-  }
-
-  async disconnectDependencies() {
-
-    try { await this.disconnectRedis() }catch(e) { throw e }
-    try { await super.disconnectDependencies() }catch(e) { throw e }
-
-  }
+{
+  plugins: ['redis']
+}
 ```
 
 ### using messageQueue
@@ -412,27 +400,13 @@ RABBITMQ_PORT
 RABBITMQ_PREFETCH_COUNT
 RABBITMQ_QUEUE_PREFIX
 ```
-There will be a global.MessageQueue variable. With MessageQueue.messageQueueLib, you can get the messageQueueLib lib that we actually using.
+
+***Please config your config/app.js***
 
 ```javascript
-MessageQueue.messageQueueLib
-```
-
-Also remember to connect in the connectDependencies phase
-```javascript
-  async connectDependencies() {
-
-    try { await super.connectDependencies() }catch(e) { throw e }
-    try { await this.connectMessageQueue() }catch(e) { throw e }
-
-  }
-
-  async disconnectDependencies() {
-
-    try { await this.disconnectMessageQueue() }catch(e) { throw e }
-    try { await super.disconnectDependencies() }catch(e) { throw e }
-
-  }
+{
+  plugins: ['messageQueue']
+}
 ```
 
 ### using QueueTask
@@ -442,6 +416,15 @@ Please refer to **using redis** section.
 Please refer to **using messageQueue** section.
 
 Before everything, you need to add a queue task to config/queueTask.js first
+
+***Please config your config/app.js***
+
+```javascript
+{
+  plugins: ['queueTask']
+}
+```
+
 
 ```javascript
 module.exports = [
@@ -486,6 +469,33 @@ class Test {
 
 module.exports = Test
 ```
+
+### using Plugin
+You can build any plugin you like using Plugin feature. SL-expres will
+1. read the app.config.plugins
+2. read `/plugins` of YOUR application folder and import the plugin ONLY the key exists in the config
+3. if there are some keys in the config still cannot be imported, it try to import them from sl-express
+
+the plugin must fulfill the directory structure
+
+```javascript
+// plugins
+    - samplePlugin1
+      - index.js
+    - samplePlugin2
+      - index.js
+```
+
+the export of the index.js must provide the following interfaces
+1. prepare(app) { }
+2. async connectDependencies(app) { }
+3. async disconnectDependencies(app) { }
+4. async willStartService(app) { }
+5. async didStartService(app) { }
+
+These interfaces are actaully about those App phases. check the class App for details
+
+`app` means the App instance. You can get properties through this app instance. Most of the cases, you will need the app.config
 
 ### starting a docker container
 TBC

@@ -2,7 +2,7 @@ require(process.cwd() + '/test/bootstrap.js')
 const App = require(`${libPath}/models/App.js`)
 
 class TestSuite extends TestCombo {
-  get title() { return 'app.loadServices' }
+  get title() { return 'app.loadPlugins' }
 
   get args() {
     return []
@@ -48,7 +48,7 @@ class TestSuite extends TestCombo {
 
     test.app.loadFramework()
 
-    return test.app.loadServices()
+    return test.app.loadPlugins()
   }
 
   shouldSuccess(combination) {
@@ -58,36 +58,48 @@ class TestSuite extends TestCombo {
   successAssert(test, combination) {
     it('should load default config', () => {
       const properties = [
-        'AppError',
+        'queueTask',
       ]
 
       properties.forEach( (prop) => {
-        expect(test.app.services).toHaveProperty(prop)
+        expect(test.app.plugins).toHaveProperty(prop)
       })
     })
 
-    it('should do overriding', () => {
-      expect(test.app.services.AppError.sampleMethod()).toEqual('sampleMethod')
+    it('should do overriding', async () => {
+      const result = await test.app.plugins.queueTask.willStartService()
+      expect(result).toEqual('abc')
     })
 
     it('should add new Field', () => {
       const properties = [
-        'SampleService'
+        'sample'
       ]
 
       properties.forEach( (prop) => {
-        expect(test.app.services).toHaveProperty(prop)
+        expect(test.app.plugins).toHaveProperty(prop)
       })
 
     })
 
-    it('should export services to the context(global)', () => {
+    it('should not export to the context(global)', () => {
       const properties = [
-        'SampleService'
+        'queueTask',
+        'sample',
       ]
 
       properties.forEach( (prop) => {
-        expect(global).toHaveProperty(prop)
+        expect(global).not.toHaveProperty(prop)
+      })
+    })
+
+    it('should not load plugin that is not in app.config.plugins', () => {
+      const properties = [
+        'dummy',
+      ]
+
+      properties.forEach( (prop) => {
+        expect(test.app.plugins).not.toHaveProperty(prop)
       })
     })
   }

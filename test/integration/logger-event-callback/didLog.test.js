@@ -45,13 +45,13 @@ class TestSuite extends TestCombo {
     test.logLevel = 'trace'
     test.logPayload = {}
 
-    test.logger = Logger.sharedLogger
+    test.logger = new Logger
 
     test.callback = jest.fn()
 
     test.logger.on('didLog', test.callback)
 
-    return Logger.log(test.logCategory, test.logLevel, test.logPayload)
+    return test.logger.log(test.logCategory, test.logLevel, test.logPayload)
   }
 
   shouldSuccess(combination) {

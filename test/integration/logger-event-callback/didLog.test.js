@@ -71,5 +71,7 @@ class TestSuite extends TestCombo {
 
   failureAssert(test, combination) {
   }
-} const testSuite = new TestSuite()
+}
+
+const testSuite = new TestSuite()
 testSuite.run()

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
+- SQS MessageQueue plugin
 - remove backward compatible code after plugin feature
 - enchance the interface of Plugin
 - do lazy loading on app.loadConfig
@@ -11,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - code refactoring for executePluginPhase and asyncExecutePluginPhase (mentioned by Philip)
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
+
+## [2.1.2] - 2019-02-26
+### Fixed
+- plugin - queuetask - should init during prepare phase
 
 ## [2.1.1] - 2019-02-25
 ### Fixed

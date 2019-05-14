@@ -9,6 +9,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@shopline/sl-express": "^1.0.0"
+    "@shopline/sl-express": "^2.1.3"
   }
 }

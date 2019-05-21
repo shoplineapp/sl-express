@@ -1,4 +1,4 @@
-let SuperApp = require('@shopline/sl-express')
+const { App: SuperApp } = require('@shopline/sl-express')
 
 class App extends SuperApp {
 

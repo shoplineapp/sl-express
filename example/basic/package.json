@@ -1,14 +1,14 @@
 {
-  "name": "example-basic",
-  "version": "0.0.1",
-  "description": "an internal used nodejs framework for shopline",
-  "keywords": [],
-  "main": "index.js",
-  "bugs": {
-    "email": "ted@shoplineapp.com"
-  },
-  "license": "ISC",
-  "dependencies": {
-    "@shopline/sl-express": "^1.0.0"
-  }
+    "name": "example-basic",
+    "version": "0.0.1",
+    "description": "an internal used nodejs framework for shopline",
+    "keywords": [],
+    "main": "index.js",
+    "bugs": {
+        "email": "ted@shoplineapp.com"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "@shopline/sl-express": "^2.1.3"
+    }
 }

@@ -79,8 +79,8 @@ TBC
 
 1. Install [Homebrew](https://brew.sh/) on your machine
 2. Install docker via Homebrew `brew cask install docker`
-3. Go into the `example/basic` directory on your terminal and build a docker image `docker build --tag=test-app .`
-4. Create a docker container `docker run -p 3000:3000 test-app`
+3. Go into the `example/basic` directory on your terminal and build a docker image by `docker build --tag=test-app .`
+4. Create a docker container by `docker run -p 3000:3000 test-app`
 5. Open your browser and go to http://localhost:3000
 6. Run `ctrl+c` to stop the container. You can check all the containers you have with `docker ps -a`
 7. `docker rm <CONTAINER_ID>` to remove the container
@@ -90,7 +90,7 @@ TBC
 > example/basic/docker-compose has already been configured
 
 1. Go into the `example/basic` directory on your terminal and build the images by `docker-compose build`
-2. Create a docker containers by `docker-compose up`
+2. Create docker containers by `docker-compose up`
 3. Open your browser and go to http://localhost:3000
 4. Run `ctrl+c` to stop the container or you can run `docker-compose stop`
 

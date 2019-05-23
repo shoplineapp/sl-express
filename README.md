@@ -73,15 +73,26 @@ TBC
 1. Run `sl-express console` on your terminal and this will bring you into the express console
 2. Type `app.id` on your express console to see the time when you start your console
 
-#### starting the express server with docker
+#### starting the express server with docker run
 
-> example/basic/Dockerfile has already been configured to start the server via docker run
+> example/basic/Dockerfile has already been configured
 
 1. Install [Homebrew](https://brew.sh/) on your machine
 2. Install docker via Homebrew `brew cask install docker`
 3. Go into the `example/basic` directory on your terminal and build a docker image `docker build --tag=test-app .`
 4. Create a docker container `docker run -p 3000:3000 test-app`
 5. Open your browser and go to http://localhost:3000
+6. Run `ctrl+c` to stop the container. You can check all the containers you have with `docker ps -a`
+7. `docker rm <CONTAINER_ID>` to remove the container
+
+#### starting the express server with docker-compose
+
+> example/basic/docker-compose has already been configured
+
+1. Go into the `example/basic` directory on your terminal and build the images by `docker-compose build`
+2. Create a docker containers by `docker-compose up`
+3. Open your browser and go to http://localhost:3000
+4. Run `ctrl+c` to stop the container or you can run `docker-compose stop`
 
 ## Use cases
 
@@ -607,9 +618,12 @@ You can build any plugin you like using Plugin feature. SL-expres will
 
 the plugin must fulfill the directory structure
 
-```javascript
+```
 // plugins
--samplePlugin1 - index.js - samplePlugin2 - index.js;
+- samplePlugin1
+  - index.js
+- samplePlugin2
+  - index.js;
 ```
 
 the export of the index.js must provide the following interfaces

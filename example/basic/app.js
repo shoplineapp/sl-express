@@ -1,8 +1,6 @@
-let SuperApp = require('@shopline/sl-express')
+let { App: SuperApp } = require('@shopline/sl-express');
 
-class App extends SuperApp {
+class Server extends SuperApp {}
 
-}
-
-let app = new App
-module.exports = app
+let server = new Server();
+module.exports = server;

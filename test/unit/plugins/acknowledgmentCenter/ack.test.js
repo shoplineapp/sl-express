@@ -85,7 +85,6 @@ class TestSuite extends TestCombo {
 
   successAssert(test, combination) {
     it('should the acknowledgmentCenter itself', () => {
-      console.log('test.res: ', test.res)
       expect(test.res).toEqual(test.acknowledgmentCenter)
     })
 

@@ -72,7 +72,6 @@ class TestSuite extends TestCombo {
     const [obj] = combination
 
     it('should call request.post with proper payload', function() {
-      console.log('test: ', test)
       expect(request.post).toBeCalledWith(test.observer.httpOpts.uri, {
         ...test.observer.httpOpts,
         json: true,

@@ -78,7 +78,6 @@ class TestSuite extends TestCombo {
 
   successAssert(test, combination) {
     it('should return a correct payload', () => {
-      console.log('test.res: ', test.res)
       expect(test.res).toHaveProperty('ResponseMetadata')
       expect(test.res).toHaveProperty('MD5OfMessageBody')
       expect(test.res).toHaveProperty('MessageId')

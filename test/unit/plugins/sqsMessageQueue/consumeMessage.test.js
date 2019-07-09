@@ -69,6 +69,8 @@ class TestSuite extends TestCombo {
 
     await messageQueue.queueMessage('default', "1111")
 
+    jest.spyOn(messageQueue, 'getMessage').mockReturnValue({})
+
     test.handler = jest.fn()
 
     return messageQueue.consumeMessage('default', test.handler)
@@ -82,7 +84,7 @@ class TestSuite extends TestCombo {
 
   successAssert(test, combination) {
     it('should return a correct payload', () => {
-      console.log(test.res)
+      expect(test.res).toEqual({})
     })
   }
 

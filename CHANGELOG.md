@@ -9,9 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - enchance the interface of Plugin
 - do lazy loading on app.loadConfig
 - app.config will use lazy loading pattern instead of checking in every function (mentioned by Jas)
-- code refactoring for executePluginPhase and asyncExecutePluginPhase (mentioned by Philip)
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
+
+## [ToBeReleased]
+- prepare become async function
+- code refactoring for executePluginPhase and asyncExecutePluginPhase (mentioned by Philip)
 
 ## [2.1.2] - 2019-02-26
 ### Fixed

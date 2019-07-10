@@ -50,14 +50,26 @@ class TestSuite extends TestCombo {
     }
 
     const acknowledgmentCenter = new AcknowledgmentCenter()
+
     acknowledgmentCenter.register(test.event, test.observer)
 
-    test.handler = await acknowledgmentCenter.ack(test.event, test.payload)
-
-    const notificationCenter = new NotificationCenter()
-    notificationCenter.register(test.event, test.observer.id, test.handler)
-
     jest.spyOn(request, 'post').mockReturnValue(null)
+
+    jest.spyOn(acknowledgmentCenter, 'enqueue').mockReturnValue(
+      acknowledgmentCenter.dequeue({
+        payload: {
+          event: test.event,
+          acknowledgmentObj: test.payload,
+          observer: test.observer
+        }
+      })
+    )
+
+    const notificationCenter = new NotificationCenter
+
+    notificationCenter.register(test.event, test.observer.id, async function() {
+      await acknowledgmentCenter.ack(test.event, test.payload)
+    })
 
     await notificationCenter.fire(test.event, test.payload)
 

@@ -1,5 +1,5 @@
 require(process.cwd() + '/test/bootstrap.js')
-const MongoosePlugin = require(`${process.cwd()}/lib/plugins/mongoose/lib/MongoosePlugin.js`)
+const MongoosePlugin = require(`${libPath}/plugins/mongoose/lib/MongoosePlugin.js`)
 
 class TestSuite extends TestCombo {
   get title() {
@@ -24,7 +24,9 @@ class TestSuite extends TestCombo {
     return []
   }
 
-  beforeAll(test, combination) {}
+  beforeAll(test, combination) {
+    jest.mock('mongoose');
+  }
 
   beforeEach(test, combination) {
     const [config] = combination
@@ -84,7 +86,9 @@ class TestSuite extends TestCombo {
       if (config === 'correct') {
         expect(test.res).toEqual('mongodb://localhost:27017/myapp')
       } else {
-        expect(test.res).toEqual('mongodb://username:password@localhost:27017/myapp')
+        expect(test.res).toEqual(
+          'mongodb://username:password@localhost:27017/myapp'
+        )
       }
     })
   }

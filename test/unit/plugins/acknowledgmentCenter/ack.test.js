@@ -26,7 +26,11 @@ class TestSuite extends TestCombo {
     return []
   }
 
-  beforeAll(test, combination) {}
+  beforeAll(test, combination) {
+    QueueTask.queue = function() {
+      return null
+    }
+  }
 
   beforeEach(test, combination) {
     test.event = 'event'
@@ -69,10 +73,19 @@ class TestSuite extends TestCombo {
     const acknowledgmentCenter = new AcknowledgmentCenter()
     test.acknowledgmentCenter = acknowledgmentCenter
 
-    jest.spyOn(QueueTask, 'queue').mockReturnValue({})
-    // jest.spyOn(acknowledgmentCenter, 'httpAck').mockReturnValue({})
-
     acknowledgmentCenter.register(test.event, test.observer)
+
+    jest.spyOn(acknowledgmentCenter, 'httpAck').mockReturnValue({})
+
+    jest.spyOn(acknowledgmentCenter, 'enqueue').mockReturnValue(
+      acknowledgmentCenter.dequeue({
+        payload: {
+          event: eventType,
+          acknowledgmentObj: eventObj,
+          observer: test.observer
+        }
+      })
+    )
 
     return acknowledgmentCenter.ack(eventType, eventObj)
   }

@@ -39,7 +39,6 @@ class TestSuite extends TestCombo {
   getArgValues(test, combination, arg, argType) {}
 
   async testMethod(test, combination, argValues) {
-    
     test.event = 'testing'
     test.payload = {}
     test.observer = {
@@ -48,14 +47,22 @@ class TestSuite extends TestCombo {
         uri: 'http://test.test'
       }
     }
-    
-    jest.spyOn(request, 'post').mockReturnValue(null)
-    const acknowledgmentCenter = new AcknowledgmentCenter()
-    acknowledgmentCenter.register(
-      test.event,
-      test.observer,
-    )
 
+    jest.spyOn(request, 'post').mockReturnValue(null)
+
+    const acknowledgmentCenter = new AcknowledgmentCenter
+
+    acknowledgmentCenter.register(test.event, test.observer)
+
+    jest.spyOn(acknowledgmentCenter, 'enqueue').mockReturnValue(
+      acknowledgmentCenter.dequeue({
+        payload: {
+          event: test.event,
+          acknowledgmentObj: test.payload,
+          observer: test.observer
+        }
+      })
+    )
 
     await acknowledgmentCenter.ack(test.event, test.payload)
 

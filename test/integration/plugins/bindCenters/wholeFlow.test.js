@@ -2,6 +2,7 @@ require(process.cwd() + '/test/bootstrap.js')
 const request = require('request-promise')
 const AcknowledgmentCenter = require(`${libPath}/plugins/acknowledgmentCenter/lib/AcknowledgmentCenter.js`)
 const NotificationCenter = require(`${libPath}/plugins/notificationCenter/lib/NotificationCenter.js`)
+const bindCenters = require(`${libPath}/plugins/bindCenters/index.js`)
 
 class TestSuite extends TestCombo {
   get title() {
@@ -49,7 +50,7 @@ class TestSuite extends TestCombo {
       }
     }
 
-    const acknowledgmentCenter = new AcknowledgmentCenter()
+    const acknowledgmentCenter = new AcknowledgmentCenter
 
     acknowledgmentCenter.register(test.event, test.observer)
 
@@ -67,8 +68,14 @@ class TestSuite extends TestCombo {
 
     const notificationCenter = new NotificationCenter
 
-    notificationCenter.register(test.event, test.observer.id, async function() {
-      await acknowledgmentCenter.ack(test.event, test.payload)
+    bindCenters.prepare({
+      config: {
+        bindCenters: {
+          events: [test.event]
+        }
+      },
+      notificationCenter,
+      acknowledgmentCenter
     })
 
     await notificationCenter.fire(test.event, test.payload)

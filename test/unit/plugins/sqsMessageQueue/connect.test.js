@@ -24,7 +24,9 @@ class TestSuite extends TestCombo {
     return []
   }
 
-  beforeAll(test, combination) {}
+  beforeAll(test, combination) {
+    jest.mock('aws-sdk')
+  }
 
   beforeEach(test, combination) {
     const [config] = combination

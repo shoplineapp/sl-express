@@ -23,7 +23,7 @@ class TestSuite extends TestCombo {
   extraCombinations() { return [] }
 
   beforeAll(test, combination) {
-
+    jest.mock('aws-sdk')
   }
 
   beforeEach(test, combination) {

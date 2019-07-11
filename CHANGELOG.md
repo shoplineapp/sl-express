@@ -14,6 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [ToBeReleased]
 - code refactoring for executePluginPhase and asyncExecutePluginPhase (mentioned by Philip)
 
+## [2.2.1] - 2019-07-09
+### Fixed
+- App Start prepare without async/await
+
 ## [2.2.0] - 2019-07-09
 ### Added
 - SQS MessageQueue plugin

@@ -626,6 +626,109 @@ the plugin must fulfill the directory structure
   - index.js;
 ```
 
+### using NotificationCenter
+
+NotificationCenter can trigger functions when you fire a notification.
+1. notificationCenter.register(eventType, observerId, handler)
+2. notificationCenter.fire(eventType, payload)
+3. handler will be called parallelly
+
+It helps seperating codes. When there is a function with some follow-up functions to call. You may not want to put this call directly within the function since the code will be long and low readibility
+With notificationCenter, those follow-up functions can stay in their own models or instance and just register itself to the event.
+
+The notificationCenterPlugin will init a instance as `app.notificationCenter` and also alias `global.NotificationCenter = app.notificationCenrer`
+
+```javascript
+// config/app.js
+module.exports = {
+  plugins: ['notificationCenter']
+}
+
+// with the plugin switch on in the app
+NotificationCenter.register('MessageCreated', 'messageForwarding`, function(obj) {
+  console.log(obj)
+})
+
+NotificationCenter.fire('MessageCreated', { 'abc': 'test' })
+
+// { 'abc': 'test' }
+```
+
+### using AcknowledgementCenter
+AcknowledgmentCenter can call other service via http call when event happen.
+Service can be registered in the `config/acknowledgmentCenter.js`
+Services will be called after enqueue and dequeue (QueueTask required).
+
+```javascript
+// config/app.js
+module.exports = {
+  plugins: ['acknowledgmentCenter']
+}
+
+// config/acknowledgmentCenter.js
+module.exports = {
+  observers: [
+    {
+      id: 'SERVICE_A',
+      events: [
+        'EVENT_ABC',
+        'EVENT_DEF',
+      ],
+      httpOpts: {
+        // will be passed directly to the request library
+        uri: 'https://service-a.com/tasks',
+      }
+  ]
+}
+
+AcknowledgmentCenter.ack('EVENT_ABC', { 'hello': 'world' })
+
+```
+### bindCenters
+Sometimes you want to use both NotificationCenter and AcknowledgmentCenter. When a notification is fired, the system will notify services
+bindCenters is a way to connect the events
+
+```
+// config/app.js
+module.exports = {
+  plugins: [
+    'notificationCenter',
+    'acknowledgmentCenter',
+    'bindCenter',
+  ]
+}
+
+// config/bindCenter.js
+module.exports = {
+  events: [
+    'EVENT_ABC'
+  ]
+}
+
+// config/acknowledgmentCenter.js
+module.exports = {
+  observers: [
+    {
+      id: 'SERVICE_A',
+      events: [
+        'EVENT_ABC',
+        'EVENT_DEF',
+      ],
+      httpOpts: {
+        // will be passed directly to the request library
+        uri: 'https://service-a.com/tasks',
+      }
+  ]
+}
+
+Notification.fire('EVENT_ABC', payload)
+
+// payload will be sent to SERVICE_A
+
+```
+
+###
+
 the export of the index.js must provide the following interfaces
 
 1. prepare(app) { }

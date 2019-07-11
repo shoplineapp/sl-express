@@ -1,8 +1,6 @@
 const { App: SuperApp } = require('@shopline/sl-express')
 
-class App extends SuperApp {
+class App extends SuperApp {}
 
-}
-
-let app = new App
-module.exports = app
+let app = new App();
+module.exports = app;

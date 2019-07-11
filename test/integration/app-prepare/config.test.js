@@ -60,7 +60,6 @@ class TestSuite extends TestCombo {
         'app.moduleDelimiter',
         'logger.serviceName',
         'messageQueue.queuePrefix',
-        'mongoose.url',
         'queueTasks',
         'redis.host',
       ]

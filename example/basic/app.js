@@ -1,4 +1,4 @@
-const { App: SuperApp } = require(`${process.cwd()}/index`)
+const { App: SuperApp } = require('@shopline/sl-express')
 
 class App extends SuperApp {}
 

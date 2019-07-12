@@ -14,6 +14,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [ToBeReleased]
 - code refactoring for executePluginPhase and asyncExecutePluginPhase (mentioned by Philip)
 
+## [2.2.2] - 2019-07-10
+### Fixed
+- Fix sl-express console async/await issue
+
+### Added
+- Add sl-express console with async/await mode
+
 ## [2.2.1] - 2019-07-09
 ### Fixed
 - App Start prepare without async/await

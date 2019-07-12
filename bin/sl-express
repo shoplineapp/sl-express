@@ -19,3 +19,9 @@ if (args[0] == "console") {
 
 }
 
+if (args[0] == "asyncConsole") {
+
+  let filePath = path.resolve(__dirname, '../lib/asyncConsole.js')
+  require(filePath)
+
+}

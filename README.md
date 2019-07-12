@@ -73,6 +73,11 @@ TBC
 1. Run `sl-express console` on your terminal and this will bring you into the express console
 2. Type `app.id` on your express console to see the time when you start your console
 
+#### starting a sample express console with async mode
+
+1. Run `sl-express asyncConsole` on your terminal and this will bring you into the express console with async mode
+2. Type `app.id` on your express console to see the time when you start your console
+
 #### starting the express server with docker run
 
 > example/basic/Dockerfile has already been configured

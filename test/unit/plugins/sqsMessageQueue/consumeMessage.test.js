@@ -67,7 +67,15 @@ class TestSuite extends TestCombo {
 
     await messageQueue.connect()
 
-    await messageQueue.queueMessage('default', "1111")
+    const messages = []; 
+
+    for (let i = 0; i < 1; i++) {
+      messages.push(`Msg_${i}`)
+    }
+
+    await Promise.all(messages, async message => {
+      await messageQueue.queueMessage('default', message)
+    })
 
     jest.spyOn(messageQueue, 'getMessage').mockReturnValue({})
 

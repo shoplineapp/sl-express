@@ -1,5 +1,6 @@
 const TestCombo = require(`${process.cwd()}/test/TestCombo.js`)
 const SQSMessageQueue = require(`${process.cwd()}/lib/plugins/sqsMessageQueue/lib/SQSMessageQueue.js`)
+const Promise = require('bluebird')
 
 class TestSuite extends TestCombo {
   get title() { return 'SQSMessageQueue.consumeMessage' }
@@ -48,7 +49,8 @@ class TestSuite extends TestCombo {
           queuePrefix: 'mc-',
           queueMap: {
             default: 'mc-sqs-stg'
-          }
+          },
+          maxNumberOfMessages: 10
         }
       }
     }
@@ -67,7 +69,14 @@ class TestSuite extends TestCombo {
 
     await messageQueue.connect()
 
-    await messageQueue.queueMessage('default', "1111")
+    const messages = []; 
+
+    for (let i = 0; i < 15; i++) {
+      const message = messageQueue.queueMessage('default', `Msg_${i}`)
+      messages.push(message)
+    }
+
+    await Promise.all(messages)
 
     jest.spyOn(messageQueue, 'getMessage').mockReturnValue({})
 

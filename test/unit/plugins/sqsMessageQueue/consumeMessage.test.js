@@ -50,7 +50,9 @@ class TestSuite extends TestCombo {
           queueMap: {
             default: 'mc-sqs-stg'
           },
-          maxNumberOfMessages: 10
+          maxNumberOfMessages: 10,
+          visibilityTimeout: 40,
+          waitTimeSeconds: 20
         }
       }
     }

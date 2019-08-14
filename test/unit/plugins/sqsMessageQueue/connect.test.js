@@ -3,7 +3,7 @@ const SQSMessageQueue = require(`${process.cwd()}/lib/plugins/sqsMessageQueue/li
 
 class TestSuite extends TestCombo {
   get title() {
-    return 'SQSMessageQueue'
+    return 'SQSMessageQueue.connect'
   }
 
   get args() {

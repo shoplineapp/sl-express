@@ -1,6 +1,6 @@
 {
   "name": "@shopline/sl-express",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "A nodejs framework based on expressjs",
   "main": "index.js",
   "directories": {

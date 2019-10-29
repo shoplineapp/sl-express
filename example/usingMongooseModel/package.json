@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "@shopline/sl-express": "^1.0.0",
-    "mongoose": "^5.0.16"
+    "mongoose": "^5.7.5"
   }
 }

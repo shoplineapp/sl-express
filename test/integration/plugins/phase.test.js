@@ -54,22 +54,26 @@ class TestSuite extends TestCombo {
       'didStartService',
     ]
 
-    const fakePlugin = function() {
-      return test.pluginMethods.reduce( (acc, method) => {
-        return {
-          ...acc,
-          [method]: jest.fn()
-        }
-      }, {})
-    }
+    const arr = ['sample', 'queueTask']
 
-    jest.spyOn(test.app, 'loadPlugins')
-      .mockImplementation(() => {
-        test.app.plugins = {
-          sample: fakePlugin(),
-          queueTask: fakePlugin(),
-        }
+    arr.forEach( plugin => {
+      jest.mock(`${process.cwd()}/test/exampleApp/api/plugins/${plugin}`, function() {
+        const pluginMethods = [
+          'prepare',
+          'connectDependencies',
+          'disconnectDependencies',
+          'willStartService',
+          'didStartService',
+        ]
+
+        return pluginMethods.reduce( (acc, method) => {
+          return {
+            ...acc,
+            [method]: jest.fn()
+          }
+        }, {})
       })
+    })
 
     jest.spyOn(test.app, 'startService')
       .mockReturnValue(test.app)

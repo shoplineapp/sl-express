@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - plugin appending properties to app is not appropriate (Ted)
 
 ## [ToBeReleased]
+- README should be included in plugin dir
 
 ## [2.3.0] - 2019-10-16
 ### Added

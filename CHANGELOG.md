@@ -11,7 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
 
-## [ToBeReleased]
+## [2.3.1] 2020-03-09
 - README should be included in plugin dir
 - update Plugin tutorial in README
 - update Logging tutorial in README

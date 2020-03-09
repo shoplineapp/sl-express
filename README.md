@@ -358,7 +358,7 @@ And these framework will first gather config1 and config2, and do a overriding w
 
 ### add logging
 
-This framework use log4js wrapped in a service Logger. Things can be configured in **_config/logger.js_**.
+This framework use log4js wrapped in a plugin logger. Things can be configured in **_config/logger.js_**.
 
 **_Please config your config/app.js_**
 
@@ -373,6 +373,29 @@ There is no magic for configuring the Logger. Please visit: https://www.npmjs.co
 Most of the cases, you just need to add categories like 'broadcast', 'queueHandling'. It just bases on what feature you want to take log.
 
 Besides, as we are using cloudwatch, we just append our logs to stdout at this moment.
+
+#### more about logging practce
+##### Log level
+1. debug
+2. trace
+3. warn
+4. error
+5. info
+
+trace: Most of the case we will add trace log every where as we should be able to investigate problems in a black-box system in production
+warn: some error that are not exactly exceptional but you want to keep track of these kind of weird behaviour
+error: Every exceptional should be logged with error log, no matter it breaks the process or not
+info: System-wise log will be assigned to info log, like 'connected mongo'.
+
+##### Log structure
+must-have:
+1. logCategory
+2. logLevel
+3. obj
+
+logCategory: a category to group logs. most of the case it is designed by feature like 'broadcast', 'notificationMessage'.
+logLevel: like the upper section
+obj: a obj to be JSON.stringify. WE HIGHLY RECOMMEND YOU ADD THE FOLLOWING: 1. action (string to describe the process), 2. traceId
 
 ## Use cases with built-in Model / Service
 
@@ -619,15 +642,26 @@ You can build any plugin you like using Plugin feature. SL-expres will
 
 1. read the app.config.plugins
 2. read `/plugins` of YOUR application folder and import the plugin ONLY the key exists in the config
-3. if there are some keys in the config still cannot be imported, it try to import them from sl-express
+3. if there are some keys in the config cannot be imported, it try to import them from sl-express. (overriding the default)
+
+```
+// config/app.js
+
+module.exports = {
+  plugins: [
+    'helloWorld',
+    'drinkTea',
+  ]
+}
+```
 
 the plugin must fulfill the directory structure
 
 ```
 // plugins
-- samplePlugin1
+- helloWorld
   - index.js
-- samplePlugin2
+- drinkTea
   - index.js;
 ```
 
@@ -642,3 +676,45 @@ the export of the index.js must provide the following interfaces
 These interfaces are related to specific App phases. check the class App for details
 
 `app` means the App instance. You can get properties through this app instance. Most of the cases, you will need the app.config
+
+#### in more advanced usages
+
+```
+// plugins/
+- helloWorld
+  - lib/
+    - ModelA.js
+    - ModelB.js
+    - HelloWorldService.js
+    - HelloWorldPlugin.js
+  - index.js
+  - README.md
+```
+
+```
+// index.js
+
+const HelloWorldPlugin = require('./HelloWorldPlugin')
+module.exports = new HelloWorldPlugin()
+```
+
+```
+// HelloWorldPlugin.js
+
+class HelloWorldPlugin {
+  prepare(app) {
+    const service = new HelloWorldService()
+  }
+
+  async connectDependencies(app) { }
+  async disconnectDependencies(app) { }
+  async willStartService(app) { }
+  async didStartService(app) { }
+}
+
+module.exports = HelloWorldPlugin
+```
+
+Model: Model for completing the plugin
+Service: A layer to manipulate the models and also provide interface to complete use cases
+Plugin: It is a connector between the service and the app instance.

@@ -715,6 +715,18 @@ class HelloWorldPlugin {
 module.exports = HelloWorldPlugin
 ```
 
-Model: Model for completing the plugin
-Service: A layer to manipulate the models and also provide interface to complete use cases
-Plugin: It is a connector between the service and the app instance.
+## Layers of SL-express application
+
+We can organise our code structure will five kinds of components:
+
+1. *Controller*: its actions to receive API calls
+2. *AppService*: services that provided by our sl-express application to complete use cases by making use of models.
+3. *Model*: to control the queries, data structure, data change of itself
+4. *Service*: services that are intaken into the application.
+5. *Plugin*: a structure that compose of 2,3,4. it can abstruct the whole service you want to provide. It also conform the interface to integrate with the sl-express app
+
+###More about plugin
+In a simple way, it's a connector between the app and the library / modules you write.
+
+Sometimes, in your application, you may need to solve some use cases that involve a complicated logic flow. it may involve many models and intaken services which only concern this part of this logic but not the app.
+In this case, you would like to "hide" these models and services and wrap it into a modules. And you may also need to setup a bit before pluging it into the application. Using the integration feature of the plugin layer, your modules can simply focus on the logic.

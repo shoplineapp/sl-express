@@ -213,6 +213,9 @@ The pattern should be:
 
 > REGEX middleware middleware
 
+Please also reference:
+https://expressjs.com/en/guide/routing.html
+
 ```javascript
 module.exports = {
 

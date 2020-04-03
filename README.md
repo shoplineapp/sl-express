@@ -382,10 +382,10 @@ Besides, as we are using cloudwatch, we just append our logs to stdout at this m
 4. error
 5. info
 
-trace: Most of the case we will add trace log every where as we should be able to investigate problems in a black-box system in production
-warn: some error that are not exactly exceptional but you want to keep track of these kind of weird behaviour
-error: Every exceptional should be logged with error log, no matter it breaks the process or not
-info: System-wise log will be assigned to info log, like 'connected mongo'.
+1. trace: Most of the case we will add trace log every where as we should be able to investigate problems in a black-box system in production
+2. warn: some error that are not exactly exceptional but you want to keep track of these kind of weird behaviour
+3. error: Every exceptional should be logged with error log, no matter it breaks the process or not
+4. info: System-wise log will be assigned to info log, like 'connected mongo'.
 
 ##### Log structure
 must-have:

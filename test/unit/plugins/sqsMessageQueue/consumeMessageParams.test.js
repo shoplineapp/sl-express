@@ -1,4 +1,4 @@
-const TestCombo = require(`${process.cwd()}/test/TestCombo.js`)
+require(process.cwd() + '/test/bootstrap.js')
 const SQSMessageQueue = require(`${process.cwd()}/lib/plugins/sqsMessageQueue/lib/SQSMessageQueue.js`)
 
 class TestSuite extends TestCombo {

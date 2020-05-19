@@ -213,6 +213,9 @@ The pattern should be:
 
 > REGEX middleware middleware
 
+Please also reference:
+https://expressjs.com/en/guide/routing.html
+
 ```javascript
 module.exports = {
 
@@ -382,10 +385,10 @@ Besides, as we are using cloudwatch, we just append our logs to stdout at this m
 4. error
 5. info
 
-trace: Most of the case we will add trace log every where as we should be able to investigate problems in a black-box system in production
-warn: some error that are not exactly exceptional but you want to keep track of these kind of weird behaviour
-error: Every exceptional should be logged with error log, no matter it breaks the process or not
-info: System-wise log will be assigned to info log, like 'connected mongo'.
+1. trace: Most of the case we will add trace log every where as we should be able to investigate problems in a black-box system in production
+2. warn: some error that are not exactly exceptional but you want to keep track of these kind of weird behaviour
+3. error: Every exceptional should be logged with error log, no matter it breaks the process or not
+4. info: System-wise log will be assigned to info log, like 'connected mongo'.
 
 ##### Log structure
 must-have:
@@ -715,6 +718,18 @@ class HelloWorldPlugin {
 module.exports = HelloWorldPlugin
 ```
 
-Model: Model for completing the plugin
-Service: A layer to manipulate the models and also provide interface to complete use cases
-Plugin: It is a connector between the service and the app instance.
+## Layers of SL-express application
+
+We can organise our code structure will five kinds of components:
+
+1. *Controller*: its actions to receive API calls
+2. *AppService*: services that provided by our sl-express application to complete use cases by making use of models.
+3. *Model*: to control the queries, data structure, data change of itself
+4. *Service*: services that are intaken into the application.
+5. *Plugin*: a structure that compose of 2,3,4. it can abstruct the whole service you want to provide. It also conform the interface to integrate with the sl-express app
+
+###More about plugin
+In a simple way, it's a connector between the app and the library / modules you write.
+
+Sometimes, in your application, you may need to solve some use cases that involve a complicated logic flow. it may involve many models and intaken services which only concern this part of this logic but not the app.
+In this case, you would like to "hide" these models and services and wrap it into a modules. And you may also need to setup a bit before pluging it into the application. Using the integration feature of the plugin layer, your modules can simply focus on the logic.

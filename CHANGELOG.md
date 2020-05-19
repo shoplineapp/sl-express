@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - app.config will use lazy loading pattern instead of checking in every function (mentioned by Jas)
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
+
+## [3.0.0] 2020-05-19
 - remove plugin acknowledgementCenter
 - remove plugin bindCenter
 - remove plugin notificationCenter

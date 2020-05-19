@@ -1,4 +1,4 @@
-const TestCombo = require(`${process.cwd()}/test/TestCombo.js`)
+require(process.cwd() + '/test/bootstrap.js')
 const SQSMessageQueue = require(`${process.cwd()}/lib/plugins/sqsMessageQueue/lib/SQSMessageQueue.js`)
 const Promise = require('bluebird')
 
@@ -71,7 +71,7 @@ class TestSuite extends TestCombo {
 
     await messageQueue.connect()
 
-    const messages = []; 
+    const messages = [];
 
     for (let i = 0; i < 15; i++) {
       const message = messageQueue.queueMessage('default', `Msg_${i}`)

@@ -1,6 +1,6 @@
 {
   "name": "@shopline/sl-express",
-  "version": "2.3.1",
+  "version": "3.0.0",
   "description": "A nodejs framework based on expressjs",
   "main": "index.js",
   "directories": {
@@ -14,19 +14,15 @@
     "url": "https://github.com/shoplineapp/sl-express/issues"
   },
   "dependencies": {
-    "async-repl": "^0.4.0",
-    "bluebird": "^3.5.0",
-    "cartesian-product": "^2.1.2",
-    "deep-extend": "^0.5.0",
-    "dotenv": "^5.0.1",
-    "express": "^4.16.3",
-    "flat": "^4.0.0",
+    "bluebird": "^3.7.2",
+    "deep-extend": "^0.6.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "flat": "^5.0.0",
     "inflection": "^1.12.0",
-    "log4js": "^3.0.6",
-    "repl": "^0.1.3",
-    "request": "^2.85.0",
-    "request-promise": "^4.2.2",
-    "require-all": "^2.2.0"
+    "log4js": "^6.2.1",
+    "require-all": "^3.0.0",
+    "test-combo": "^0.0.2"
   },
   "devDependencies": {
     "jest": "^23.6.0"

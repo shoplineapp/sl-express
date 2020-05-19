@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - remove plugin bindCenter
 - remove plugin notificationCenter
 - BREAKING: remove request and request-promise as default
+- BREAKING: using native repl. asyncConsole will set `NODE_OPTIONS`
 
 ## [2.3.1] 2020-03-09
 - README should be included in plugin dir

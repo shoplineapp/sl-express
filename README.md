@@ -574,6 +574,7 @@ module.exports = [
     {
         type: 'TEST', // an identifier for you task
         queue: 'test_queue', // the CONSUMER_QUEUE_ID or consumerQueueId to handle the queue
+        messageExpireTimeSec: 3600 * 24 // set a timeout on message, default to (3600 * 24)s. After the timeout has expired, the message will automatically be discarded.
         handler: 'Test.dequeue', // the handler of the tasks of this type
         description: 'any remarks you want to add'
     }

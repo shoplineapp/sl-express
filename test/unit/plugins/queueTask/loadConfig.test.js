@@ -39,13 +39,15 @@ class TestSuite extends TestCombo {
         type: 'TypeB',
         queue: 'highPriority',
         handler: 'ModelB.taskB',
-        description: ''
+        description: '',
+        messageExpireTimeSec: 60 * 60,
       },
       {
         type: 'TypeC',
         queue: 'default',
         handler: 'ModelC.taskC',
-        description: ''
+        description: '',
+        messageExpireTimeSec: 60 * 60,
       }
     ]
 
@@ -94,9 +96,18 @@ class TestSuite extends TestCombo {
   successAssert(test, combination) {
     it('should have correct taskQueues', () => {
       expect(QueueTask.taskQueues).toEqual({
-        TypeA: 'highPriority',
-        TypeB: 'highPriority',
-        TypeC: 'default'
+        TypeA: {
+          queue: 'highPriority',
+          messageExpireTimeSec: 60 * 60 * 24,
+        },
+        TypeB: {
+          queue: 'highPriority',
+          messageExpireTimeSec: 60 * 60,
+        },
+        TypeC: {
+          queue: 'default',
+          messageExpireTimeSec: 60 * 60,
+        }
       })
     })
 

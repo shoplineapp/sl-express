@@ -1,11 +1,11 @@
 const SQS = require('./SQS.js')
-const Credentials = require('./Credentials')
-const TokenFileWebIdentityCredentials = require('./TokenFileWebIdentityCredentials')
+const CredentialProviderChain = require('./CredentialProviderChain')
+const TokenFileWebIdentityCredentials = require('./EnvironmentCredentials')
 
 const AWS = jest.genMockFromModule()
 
 AWS.SQS = SQS
-AWS.Credentials = Credentials
-AWS.TokenFileWebIdentityCredentials = TokenFileWebIdentityCredentials
+AWS.CredentialProviderChain = CredentialProviderChain
+AWS.EnvironmentCredentials = TokenFileWebIdentityCredentials
 
 module.exports = AWS

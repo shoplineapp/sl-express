@@ -11,6 +11,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
 
+### changed
+- BREAKING: change SQSMessageQueue to use EnvironmentCredential with SQS prefix + default provider. Credential from env has higher priority than from k8s service account.
+
+## [3.2.1] 2021-10-13
+### fixed
+- fix QueueTask bug(#128)
+
+## [3.2.0] 2021-10-07
+### Changed
+- change SQSMessageQueue to support both accesskey and k8s service account
+
 ## [3.1.0] 2021-03-22
 ### Added
 - add redis cli options

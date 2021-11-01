@@ -12,6 +12,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - plugin appending properties to app is not appropriate (Ted)
 
 ### changed
+- add graceful shutdown support for both express & consumer
+- add `willStopService` plugin phase and let SQSMessageQueue stop polling when willStopService
+- fix logging typo
 - BREAKING: change SQSMessageQueue to use EnvironmentCredential with SQS prefix + default provider. Credential from env has higher priority than from k8s service account.
 
 ## [3.2.1] 2021-10-13

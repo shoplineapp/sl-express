@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
 
+## [3.3.0] 2021-11-03
 ### changed
 - add graceful shutdown support for both express & consumer
 - add `willStopService` plugin phase and let SQSMessageQueue stop polling when willStopService

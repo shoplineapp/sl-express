@@ -483,6 +483,7 @@ REDIS_PASS
 REDIS_HOST
 REDIS_PORT
 REDIS_DATABASE
+REDIS_TIMEOUT_MS
 ```
 
 **_Please config your config/app.js_**

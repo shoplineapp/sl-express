@@ -484,6 +484,7 @@ REDIS_HOST
 REDIS_PORT
 REDIS_DATABASE
 REDIS_TIMEOUT_MS
+REDIS_MAX_RETRY_DELAY
 ```
 
 **_Please config your config/app.js_**

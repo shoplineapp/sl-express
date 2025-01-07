@@ -11,6 +11,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
 
+## [4.0.0] 2025-01-07
+### changed
+- feat(QueueTask): waiting processing message by @elvis460 in https://github.com/shoplineapp/sl-express/pull/142
+- feat(SQSMessageQueue): handle got message after 20s but pod is shutting down issue by @elvis460 in https://github.com/shoplineapp/sl-express/pull/143
+- feat(CloseConsumer): set isFetchingMessage false if not get message f… by @elvis460 in https://github.com/shoplineapp/sl-express/pull/144
+- Add timeout promise to redis operations by @maryShopline1 in https://github.com/shoplineapp/sl-express/pull/146
+- Fix/dc 3170 redis connect error by @jennyc06 in https://github.com/shoplineapp/sl-express/pull/147
+- BREAKING: Error when starting app will now immediately throw & stop the server, instead of just logging the error out
+
 ## [3.3.0] 2021-11-03
 ### changed
 - add graceful shutdown support for both express & consumer

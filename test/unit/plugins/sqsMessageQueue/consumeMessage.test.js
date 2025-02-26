@@ -1,6 +1,5 @@
 require(process.cwd() + '/test/bootstrap.js')
 const SQSMessageQueue = require(`${process.cwd()}/lib/plugins/sqsMessageQueue/lib/SQSMessageQueue.js`)
-const Promise = require('bluebird')
 
 class TestSuite extends TestCombo {
   get title() { return 'SQSMessageQueue.consumeMessage' }

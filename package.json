@@ -40,6 +40,9 @@
   "keywords": [
     "expressjs"
   ],
+  "engines" : { 
+    "node" : ">=14.0.0"
+  },
   "author": "Ted Cheng",
   "license": "ISC",
   "homepage": "https://github.com/shoplineapp/sl-express#readme"

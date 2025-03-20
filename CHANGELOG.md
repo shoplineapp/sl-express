@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
 
+## [4.1.0] 2025-03-20
+### changed
+- feat(Plugins): Add grpcProvider plugin & node version requirement by @slbosco in https://github.com/shoplineapp/sl-express/pull/151
+
 ## [4.0.0] 2025-01-07
 ### changed
 - feat(QueueTask): waiting processing message by @elvis460 in https://github.com/shoplineapp/sl-express/pull/142

@@ -16,7 +16,6 @@
   "dependencies": {
     "@grpc/grpc-js": "1.8.14",
     "@grpc/proto-loader": "^0.5.5",
-    "bluebird": "^3.7.2",
     "deep-extend": "^0.6.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -40,8 +39,8 @@
   "keywords": [
     "expressjs"
   ],
-  "engines" : { 
-    "node" : ">=14.0.0"
+  "engines": {
+    "node": ">=14.0.0"
   },
   "author": "Ted Cheng",
   "license": "ISC",

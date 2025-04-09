@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [5.0.0] 2025-04-09
 ### changed
-- feat: upgrade to mongoose 8 without bluebird
+- feat: upgrade to mongoose 8 without bluebird by @elvis-hsu in https://github.com/shoplineapp/sl-express/pull/153
 
 ## [4.1.0] 2025-03-20
 ### changed

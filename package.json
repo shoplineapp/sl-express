@@ -16,6 +16,7 @@
   "dependencies": {
     "@grpc/grpc-js": "1.8.14",
     "@grpc/proto-loader": "^0.5.5",
+    "@grpc/reflection": "1.0.4",
     "deep-extend": "^0.6.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

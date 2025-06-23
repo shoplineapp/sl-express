@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
 
+## [5.1.0] 2025-06-23
+### changed
+- feat(Plugins): add gRPC server reflection option to grpcProvider plugin by @sl-raymondwong in https://github.com/shoplineapp/sl-express/pull/155
+
 ## [5.0.0] 2025-04-09
 ### changed
 - feat: upgrade to mongoose 8 without bluebird by @elvis-hsu in https://github.com/shoplineapp/sl-express/pull/153

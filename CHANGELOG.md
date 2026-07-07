@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More powerful hooking for app phasing (mentioned By Philip)
 - plugin appending properties to app is not appropriate (Ted)
 
+## [5.2.0] 2026-07-07
+### changed
+- chore(log): add optional sanitizer for request log by @jennyc06 in https://github.com/shoplineapp/sl-express/pull/159
+
 ## [5.1.0] 2025-06-23
 ### changed
 - feat(Plugins): add gRPC server reflection option to grpcProvider plugin by @sl-raymondwong in https://github.com/shoplineapp/sl-express/pull/155
